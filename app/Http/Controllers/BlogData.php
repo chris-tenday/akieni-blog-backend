@@ -10,7 +10,13 @@ use Illuminate\Support\Facades\Http;
  */
 class BlogData extends Controller
 {
+    /**
+     * The base url of jsonPlaceHolderApi.
+     * @var string
+     */
     private $baseUrl="https://jsonplaceholder.typicode.com";
+
+
     /**
      * @param int $lastFetchedPostId => the post ID of the last post that was fetched by the frontend.
      * @return \Illuminate\Http\JsonResponse
@@ -93,23 +99,22 @@ class BlogData extends Controller
            "body"=>$request->input("body")
        ]);
 
+        /**
+         * This is used to differentiate when the request fails or succeeds
+         */
+        $responseData=["status"=>"failed"];
+
         if($response->successful())
         {
-            /**
-             * Return the api response
-             */
-            $data=$response->json();
-            $data['status']="success"; /** add this property to the response */
+            $responseData['status']="success";
 
-            return response()->json($data);
+            $responseData=array_merge($responseData,$response->json());
         }
 
         /**
-         * If the request failed m return failed as response status.
+         * REturn the constructed response.
          */
-        return response()->json([
-            "status"=>"failed"
-        ]);
+        return response()->json($responseData);
 
     }
 
@@ -123,5 +128,50 @@ class BlogData extends Controller
                 throw new \Exception($d);
             }
         }
+    }
+
+    /**
+     * Publish a new post to the jsonPlaceHolder service.
+     * @param Request $request
+     */
+    public function publishPost(Request $request)
+    {
+        $requiredData=["title","body","userId"];
+        try
+        {
+            $this->checkMissingData($requiredData);
+        }
+        catch(\Exception $e){
+            return response()->json([
+                $e->getMessage() => "missing"
+            ]);
+        }
+
+        /**
+         * Make post request to the api.
+         */
+        $response=Http::post($this->baseUrl."/posts",[
+            "title"=>$request->input("title"),
+            "body"=>$request->input("body"),
+            "userId"=>$request->input("userId")
+
+        ]);
+
+        /**
+         * This is used to differentiate when the request fails or succeeds
+         */
+        $data=["status"=>"failed"];
+
+        if($response->successful())
+        {
+            $data['status']="success";
+            $d=$response->json();
+            $data=array_merge($data,$d);
+        }
+
+        /**
+         * Return the constructed response.
+         */
+        return response()->json($data);
     }
 }

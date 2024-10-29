@@ -26,6 +26,11 @@ Route::prefix("posts")->group(function(){
      */
     Route::get("/get/{lastFetchedPostId}",[BlogData::class,'getPosts']);
 
+    /**
+     * Router to publish a new post.
+     */
+    Route::post("/publish",[BlogData::class,"publishPost"]);
+
 });
 
 Route::prefix("comments")->group(function(){
