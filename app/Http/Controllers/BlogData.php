@@ -55,9 +55,38 @@ class BlogData extends Controller
         $response=Http::get($this->baseUrl."/posts/".$postId);
         if($response->successful())
         {
-            return $response->json();
+            $post=$response->json();
+            $post['author']=$this->getPostAuthor(userId: $post['userId']);
+
+            return $post;
 
         }
+    }
+
+    /**
+     * Method to get a post author.
+     * @param int $userId
+     * @return string|null
+     */
+    private function getPostAuthor(int $userId) : ?string
+    {
+        $response=Http::get($this->baseUrl."/users/".$userId);
+
+        if($response->successful())
+        {
+            return $response->object()->name;
+        }
+        return null;
+    }
+
+    /**
+     * Used to get a single post.
+     * @param int $postId
+     * @return mixed|void
+     */
+    public function getPost(int $postId)
+    {
+        $response=$this->getSinglePost($postId);
     }
 
     /**

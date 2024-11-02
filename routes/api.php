@@ -24,7 +24,9 @@ Route::prefix("posts")->group(function(){
     /**
      * Route to get posts.
      */
-    Route::get("/get/{lastFetchedPostId}",[BlogData::class,'getPosts']);
+    Route::get("/fetch/{lastFetchedPostId}",[BlogData::class,'getPosts']);
+
+    Route::get("/get/{postId}",[BlogData::class,"getPost"]);
 
     /**
      * Router to publish a new post.
