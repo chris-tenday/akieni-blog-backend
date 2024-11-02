@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BlogData;
 
 /*
 |--------------------------------------------------------------------------
@@ -12,7 +13,28 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::prefix("posts")->group(function(){
 
-Route::get('/', function () {
-    return view('welcome');
+    /**
+     * Route to get posts.
+     */
+    Route::get("/fetch/{lastFetchedPostId}",[BlogData::class,'getPosts']);
+
+    Route::get("/get/{postId}",[BlogData::class,"getPost"]);
+
+    /**
+     * Router to publish a new post.
+     */
+    Route::post("/publish",[BlogData::class,"publishPost"]);
+
+});
+
+Route::prefix("comments")->group(function(){
+
+    Route::get("/get/{postId}",[BlogData::class,"getComments"]);
+
+    /**
+     * Route to add a post comment.
+     */
+    Route::post("/add",[BlogData::class,"commentPost"]);
 });
