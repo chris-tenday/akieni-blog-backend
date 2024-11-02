@@ -86,7 +86,8 @@ class BlogData extends Controller
      */
     public function getPost(int $postId)
     {
-        $response=$this->getSinglePost($postId);
+        return $this->getSinglePost($postId);
+
     }
 
     /**
