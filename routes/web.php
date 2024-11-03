@@ -38,3 +38,7 @@ Route::prefix("comments")->group(function(){
      */
     Route::post("/add",[BlogData::class,"commentPost"]);
 });
+
+Route::get("welcome",function(){
+   return view("welcome");
+});
