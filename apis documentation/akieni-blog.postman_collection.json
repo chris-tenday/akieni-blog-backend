@@ -1,0 +1,304 @@
+{
+	"info": {
+		"_postman_id": "e869e770-0732-42a8-a0bd-e22ed9a2b0d1",
+		"name": "akieni-blog",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2912362"
+	},
+	"item": [
+		{
+			"name": "jsonplaceholder",
+			"item": [
+				{
+					"name": "Get posts",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single post",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/2",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get post comments",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/posts/1/comments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts",
+								"1",
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Comment post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "postId",
+									"value": "1",
+									"type": "text"
+								},
+								{
+									"key": "name",
+									"value": "Chris",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "c@gmail.com",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "Hello world",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/comments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"comments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create post",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "title",
+									"value": "dsdss",
+									"type": "text"
+								},
+								{
+									"key": "body",
+									"value": "xzxzxz",
+									"type": "text"
+								},
+								{
+									"key": "userId",
+									"value": "1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/posts",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a single user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base_url}}/users/1",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get Posts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local_base_url}}/posts/fetch/0",
+					"host": [
+						"{{local_base_url}}"
+					],
+					"path": [
+						"posts",
+						"fetch",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Post comments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local_base_url}}/comments/get/1",
+					"host": [
+						"{{local_base_url}}"
+					],
+					"path": [
+						"comments",
+						"get",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add comment to a post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "postId",
+							"value": "1",
+							"type": "text"
+						},
+						{
+							"key": "name",
+							"value": "Chris",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "t@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "body",
+							"value": "Hello comment",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local_base_url}}/comments/add",
+					"host": [
+						"{{local_base_url}}"
+					],
+					"path": [
+						"comments",
+						"add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Publish a new post",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "ello",
+							"type": "text"
+						},
+						{
+							"key": "body",
+							"value": "lorem ipsum",
+							"type": "text"
+						},
+						{
+							"key": "userId",
+							"value": "1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{local_base_url}}/posts/publish",
+					"host": [
+						"{{local_base_url}}"
+					],
+					"path": [
+						"posts",
+						"publish"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get a single post",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{local_base_url}}/posts/get/1",
+					"host": [
+						"{{local_base_url}}"
+					],
+					"path": [
+						"posts",
+						"get",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
